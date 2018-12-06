@@ -55,7 +55,7 @@ class plgSystemPbLiveZilla extends CMSPlugin
 
     // Basic parameters
     $this->livezilla['code'] = $params->get('code');
-    $this->livezilla['exclude'] = $params->get('exclude');
+    $this->livezilla['exclude'] = (array) $params->get('exclude');
     $this->livezilla['optout_cookie'] = $params->get('optout_cookie', '1');
     $this->livezilla['optout_tracking'] = $params->get('optout_tracking', '1');
       
