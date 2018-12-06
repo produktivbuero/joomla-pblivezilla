@@ -5,23 +5,27 @@ const $trackingStatus = document.getElementById('livezilla.tracking.status');
 
 class pbLiveZilla {
   static status() {
+    if ( $cookiesLink !== null ) {
     if (LiveZilla.OptOutCookie) {
-      $cookiesLink.innerHTML = window.pb.livezilla.cookies.enable;
-      $cookiesStatus.innerHTML = window.pb.livezilla.status.disabled;
-    } else {
-      $cookiesLink.innerHTML = window.pb.livezilla.cookies.disable;
-      $cookiesStatus.innerHTML = window.pb.livezilla.status.enabled;
+        $cookiesLink.innerHTML = window.pb.livezilla.cookies.enable;
+        $cookiesStatus.innerHTML = window.pb.livezilla.status.disabled;
+      } else {
+        $cookiesLink.innerHTML = window.pb.livezilla.cookies.disable;
+        $cookiesStatus.innerHTML = window.pb.livezilla.status.enabled;
+      }
+      console.log("Opt Out Cookie: " + LiveZilla.OptOutCookie);
     }
-    console.log("Opt Out Cookie: " + LiveZilla.OptOutCookie);
 
-    if (LiveZilla.OptOutTrack) {
-      $trackingLink.innerHTML = window.pb.livezilla.tracking.enable;
-      $trackingStatus.innerHTML = window.pb.livezilla.status.disabled;
-    } else {
-      $trackingLink.innerHTML = window.pb.livezilla.tracking.disable;
-      $trackingStatus.innerHTML = window.pb.livezilla.status.enabled;
+    if ( $trackingLink !== null ) {
+      if (LiveZilla.OptOutTrack) {
+        $trackingLink.innerHTML = window.pb.livezilla.tracking.enable;
+        $trackingStatus.innerHTML = window.pb.livezilla.status.disabled;
+      } else {
+        $trackingLink.innerHTML = window.pb.livezilla.tracking.disable;
+        $trackingStatus.innerHTML = window.pb.livezilla.status.enabled;
+      }
+      console.log("Opt Out Track: " + LiveZilla.OptOutTrack);
     }
-    console.log("Opt Out Track: " + LiveZilla.OptOutTrack);
   }
 
   static toggleCookies() {
