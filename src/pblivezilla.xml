@@ -46,17 +46,17 @@
         />
 
         <field
-    name="exclude"
-    type="sql"
-    default=""
-    label="PLG_SYSTEM_PBLIVEZILLA_OPTION_EXCLUDE_LABEL"
-    description="PLG_SYSTEM_PBLIVEZILLA_OPTION_EXCLUDE_DESCRIPTION"
-    query="SELECT id, title FROM #__menu WHERE client_id=0 AND level > 0 ORDER BY title"
-    key_field="id"
-    value_field="title"
-    multiple="multiple"
+          name="exclude"
+          type="sql"
+          default=""
+          label="PLG_SYSTEM_PBLIVEZILLA_OPTION_EXCLUDE_LABEL"
+          description="PLG_SYSTEM_PBLIVEZILLA_OPTION_EXCLUDE_DESCRIPTION"
+          query="SELECT id, title FROM #__menu WHERE client_id=0 AND level > 0 ORDER BY title"
+          key_field="id"
+          value_field="title"
+          multiple="multiple"
           class="span12"
-    />
+        />
 
         <field 
             name="optout_cookie" 
