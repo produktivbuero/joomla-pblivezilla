@@ -107,9 +107,6 @@ class plgSystemPbLiveZilla extends CMSPlugin
     // Insert global settings object
     $script = 'window.pb = window.pb || {}; window.pb.livezilla = '. json_encode($settings, JSON_FORCE_OBJECT);
     $doc->addScriptDeclaration( $script );
-
-    // Insert script
-    $doc->addScript(Juri::base(true).'/media/plg_system_pblivezilla/js/basics.js', 'text/javascript', true, true);
   }
 
 
@@ -140,9 +137,15 @@ class plgSystemPbLiveZilla extends CMSPlugin
       return;
     }
 
-    // Insert code
+    // Code
+    $insert = $this->livezilla['code'];
+
+    // Basic scripts
+    $insert .= "\n<script async src='".Juri::base(true)."/media/plg_system_pblivezilla/js/basics.js'></script>\n";
+
+    // Insert
     $buffer = $this->app->getBody();
-    $buffer = str_ireplace('</body>', $this->livezilla['code'] . '</body>', $buffer);
+    $buffer = str_ireplace('</body>', $insert . '</body>', $buffer);
     $this->app->setBody($buffer);
   }
 
