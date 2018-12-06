@@ -56,6 +56,7 @@ class plgSystemPbLiveZilla extends CMSPlugin
     // Basic parameters
     $this->livezilla['code'] = $params->get('code');
     $this->livezilla['exclude'] = (array) $params->get('exclude');
+    $this->livezilla['lang'] = (array) $params->get('lang');
     $this->livezilla['optout_cookie'] = $params->get('optout_cookie', '1');
     $this->livezilla['optout_tracking'] = $params->get('optout_tracking', '1');
       
@@ -79,6 +80,12 @@ class plgSystemPbLiveZilla extends CMSPlugin
     // Excluded menu items
     $current = $this->app->getMenu()->getActive()->id;
     if (in_array($current, $this->livezilla['exclude'])) {
+      return;
+    }
+
+    // Test languages
+    $lang = JFactory::getLanguage()->getTag();
+    if (!empty($this->livezilla['lang']) && !in_array($lang, $this->livezilla['lang'])) {
       return;
     }
 
@@ -124,6 +131,12 @@ class plgSystemPbLiveZilla extends CMSPlugin
     // Excluded menu items
     $current = $this->app->getMenu()->getActive()->id;
     if (in_array($current, $this->livezilla['exclude'])) {
+      return;
+    }
+
+    // Test languages
+    $lang = JFactory::getLanguage()->getTag();
+    if (!empty($this->livezilla['lang']) && !in_array($lang, $this->livezilla['lang'])) {
       return;
     }
 

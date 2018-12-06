@@ -58,6 +58,19 @@
           class="span12"
         />
 
+        <field
+          name="lang"
+          type="sql"
+          default=""
+          label="PLG_SYSTEM_PBLIVEZILLA_OPTION_LANG_LABEL"
+          description="PLG_SYSTEM_PBLIVEZILLA_OPTION_LANG_DESCRIPTION"
+          query="SELECT lang_code, title_native FROM #__languages ORDER BY ordering"
+          key_field="lang_code"
+          value_field="title_native"
+          multiple="multiple"
+          class="span12"
+        />
+
         <field 
             name="optout_cookie" 
             type="radio" 
