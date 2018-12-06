@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="3.8" group="system" method="upgrade">
+  <name>PLG_SYSTEM_PBLIVEZILLA</name>
+  <creationDate>03/2018</creationDate>
+  <author>Sebastian Brümmer</author>
+  <authorEmail>sebastian@produktivbuero.de</authorEmail>
+  <authorUrl>https://www.produktivbuero.de</authorUrl>
+  <copyright>Copyright (C) 2018 *produktivbüro . All rights reserved</copyright>
+  <license>GNU General Public License version 2 or later</license>
+  <version>0.9.1</version>
+  <description>PLG_SYSTEM_PBLIVEZILLA_XML_DESCRIPTION</description>
+
+  <!-- Plugin files -->
+  <files>
+    <filename plugin="pblivezilla">pblivezilla.php</filename>
+    <folder>language</folder>
+  </files>
+
+  <!-- Language files -->
+  <languages folder="language">
+    <language tag="de-DE">de-DE/de-DE.plg_system_pblivezilla.ini</language>
+    <language tag="de-DE">de-DE/de-DE.plg_system_pblivezilla.sys.ini</language>
+    <language tag="en-GB">en-GB/en-GB.plg_system_pblivezilla.ini</language>
+    <language tag="en-GB">en-GB/en-GB.plg_system_pblivezilla.sys.ini</language>
+  </languages>
+
+  <!-- Media files -->
+  <media folder="media" destination="plg_system_pblivezilla">
+    <folder>js</folder>
+  </media>
+
+  <!-- Config parameter -->
+  <config>
+    <fields name="params">
+      <fieldset name="basic">
+        <field
+          name="code"
+          type="textarea"
+          default=""
+          label="PLG_SYSTEM_PBLIVEZILLA_OPTION_CODE_LABEL"
+          description="PLG_SYSTEM_PBLIVEZILLA_OPTION_CODE_DESCRIPTION"
+          rows="10"
+          cols="5"
+          filter="raw"
+          class="span12"
+        />
+
+        <field
+    name="exclude"
+    type="sql"
+    default=""
+    label="PLG_SYSTEM_PBLIVEZILLA_OPTION_EXCLUDE_LABEL"
+    description="PLG_SYSTEM_PBLIVEZILLA_OPTION_EXCLUDE_DESCRIPTION"
+    query="SELECT id, title FROM #__menu WHERE client_id=0 AND level > 0 ORDER BY title"
+    key_field="id"
+    value_field="title"
+    multiple="multiple"
+          class="span12"
+    />
+
+        <field 
+            name="optout_cookie" 
+            type="radio" 
+            default="1" 
+            label="PLG_SYSTEM_PBLIVEZILLA_OPTION_OPTOUT_COOKIES_LABEL" 
+            description="PLG_SYSTEM_PBLIVEZILLA_OPTION_OPTOUT_COOKIES_DESCRIPTION" 
+            class="btn-group btn-group-yesno">
+          <option value="1">JYES</option>
+          <option value="0">JNO</option>
+        </field>
+
+        <field
+          type="note"
+          description="PLG_SYSTEM_PBLIVEZILLA_OPTION_OPTOUT_COOKIES_NOTE"
+          showon="optout_cookie:1"
+          class="alert alert-info"
+        />
+
+        <field 
+            name="optout_tracking" 
+            type="radio" 
+            default="1" 
+            label="PLG_SYSTEM_PBLIVEZILLA_OPTION_OPTOUT_TRACKING_LABEL" 
+            description="PLG_SYSTEM_PBLIVEZILLA_OPTION_OPTOUT_TRACKING_DESCRIPTION" 
+            class="btn-group btn-group-yesno">
+          <option value="1">JYES</option>
+          <option value="0">JNO</option>
+        </field>
+
+        <field
+          type="note"
+          description="PLG_SYSTEM_PBLIVEZILLA_OPTION_OPTOUT_TRACKING_NOTE"
+          showon="optout_tracking:1"
+          class="alert alert-info"
+        />
+      </fieldset>
+    </fields>
+  </config>
+
+  <!-- Update servers -->
+  <updateservers>
+    <server type="extension" priority="1" name="PLG_SYSTEM_PBLIVEZILLA">https://raw.githubusercontent.com/produktivbuero/joomla-pblivezilla/master/updates.xml</server>
+  </updateservers>
+</extension>
