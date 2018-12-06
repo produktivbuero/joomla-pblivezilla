@@ -59,6 +59,8 @@ class plgSystemPbLiveZilla extends CMSPlugin
     $this->livezilla['lang'] = (array) $params->get('lang');
     $this->livezilla['optout_cookie'] = $params->get('optout_cookie', '1');
     $this->livezilla['optout_tracking'] = $params->get('optout_tracking', '1');
+    $this->livezilla['cookies']['name'] = 'pb-livezilla-disable-cookie'; // cookie name (fixed)
+    $this->livezilla['tracking']['name'] = 'pb-livezilla-disable-tracking'; // cookie name (fixed)
       
   }
 
@@ -98,11 +100,9 @@ class plgSystemPbLiveZilla extends CMSPlugin
 
     // Language strings
     $settings['cookies']['disable'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_LINK_DISABLE');
-    $settings['cookies']['enable'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_LINK_ENABLE');
+    $settings['cookies']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_OFF');
     $settings['tracking']['disable'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_LINK_DISABLE');
-    $settings['tracking']['enable'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_LINK_ENABLE');
-    $settings['status']['disabled'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_DISABLED');
-    $settings['status']['enabled'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED');
+    $settings['tracking']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_OFF');
 
     // Insert global settings object
     $script = 'window.pb = window.pb || {}; window.pb.livezilla = '. json_encode($settings, JSON_FORCE_OBJECT);
@@ -176,13 +176,13 @@ class plgSystemPbLiveZilla extends CMSPlugin
 
     // Replace shortcodes
     if ( $this->livezilla['optout_cookie'] && JString::strpos($row->text, '{plg_system_pblivezilla_optout_cookies') !== false ) {
-      $insert = '<a href="javascript:pbLiveZilla.toggleCookies()" id="livezilla.cookies.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_LINK_DISABLE').'</a><span id="livezilla.cookies.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
+      $insert = '<a href="javascript:pbLiveZilla.disableCookies()" id="livezilla.cookies.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_LINK_DISABLE').'</a><span id="livezilla.cookies.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
       $regex = '/{plg_system_pblivezilla_optout_cookies}/im';
       $row->text = preg_replace($regex, $insert, $row->text);
     }
 
     if ( $this->livezilla['optout_tracking'] && JString::strpos($row->text, '{plg_system_pblivezilla_optout_tracking') !== false ) {
-      $insert = '<a href="javascript:pbLiveZilla.toogleTracking()" id="livezilla.tracking.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_LINK_DISABLE').'</a><span id="livezilla.tracking.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
+      $insert = '<a href="javascript:pbLiveZilla.disableTracking()" id="livezilla.tracking.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_LINK_DISABLE').'</a><span id="livezilla.tracking.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
       $regex = '/{plg_system_pblivezilla_optout_tracking}/im';
       $row->text = preg_replace($regex, $insert, $row->text);
     }
