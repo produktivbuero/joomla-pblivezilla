@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <updates>
   <update>
-    <name>System - Livezilla</name>
+    <name>System - LiveZilla</name>
     <element>pblivezilla</element>
     <type>plugin</type>
     <folder>system</folder>
@@ -19,7 +19,7 @@
     <targetplatform name="joomla" version="3.*"/>
   </update>
   <update>
-    <name>System - Livezilla</name>
+    <name>System - LiveZilla</name>
     <element>pblivezilla</element>
     <type>plugin</type>
     <folder>system</folder>

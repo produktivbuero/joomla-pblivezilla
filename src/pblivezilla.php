@@ -167,7 +167,7 @@ class plgSystemPbLiveZilla extends CMSPlugin
       return;
     }
 
-    // Load language from the backend
+    // Load language from site
     $lang = JFactory::getLanguage();
     $lang->load('plg_'.$this->_type.'_'.$this->_name, JPATH_SITE);
 
