@@ -11,11 +11,15 @@ class pbLiveZilla {
     if (document.cookie.indexOf(livezillaCookie + '=true') > -1) {
       if ( $cookiesLink !== null ) $cookiesLink.style.display = 'none';
       if ( $cookiesStatus !== null ) $cookiesStatus.innerHTML = window.pb.livezilla.text.cookies.off;
+    } else {
+      if ( $cookiesStatus !== null ) $cookiesStatus.innerHTML = window.pb.livezilla.text.on;
     }
 
     if (document.cookie.indexOf(liveZillaTracking + '=true') > -1) {
       if ( $trackingLink !== null ) $trackingLink.style.display = 'none';
       if ( $trackingStatus !== null ) $trackingStatus.innerHTML = window.pb.livezilla.text.tracking.off;
+    } else {
+      if ( $cookiesStatus !== null ) $cookiesStatus.innerHTML = window.pb.livezilla.text.on;
     }
   }
 

@@ -63,6 +63,7 @@ class plgSystemPbLiveZilla extends CMSPlugin
     $this->livezilla['tracking']['name'] = 'pb-livezilla-disable-tracking'; // cookie name (fixed)
 
     // Language strings
+    $this->livezilla['text']['on'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED');
     $this->livezilla['text']['cookies']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_OFF');
     $this->livezilla['text']['tracking']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_OFF');
     $this->livezilla['text']['error']['nochat'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ERROR_NOCHAT');
@@ -178,7 +179,8 @@ class plgSystemPbLiveZilla extends CMSPlugin
       if (empty($this->livezilla['code'])) {
         $insert = '<span style="color:grey;">['.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ERROR_NOCODE').']</span>';
       } else {
-        $insert = '<a href="javascript:pbLiveZilla.disableCookies()" id="livezilla.cookies.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_LINK_DISABLE').'</a><span id="livezilla.cookies.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
+        $insert = '<a href="javascript:pbLiveZilla.disableCookies()" id="livezilla.cookies.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_LINK_DISABLE').'</a>';
+        $insert .= '<span id="livezilla.cookies.status"></span>';
       }
       
       $regex = '/{plg_system_pblivezilla_optout_cookies}/im';
@@ -189,7 +191,8 @@ class plgSystemPbLiveZilla extends CMSPlugin
       if (empty($this->livezilla['code'])) {
         $insert = '<span style="color:grey;">['.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ERROR_NOCODE').']</span>';
       } else {
-        $insert = '<a href="javascript:pbLiveZilla.disableTracking()" id="livezilla.tracking.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_LINK_DISABLE').'</a><span id="livezilla.tracking.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
+        $insert = '<a href="javascript:pbLiveZilla.disableTracking()" id="livezilla.tracking.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_LINK_DISABLE').'</a>';
+        $insert .= '<span id="livezilla.tracking.status"></span>';
       }
 
       $regex = '/{plg_system_pblivezilla_optout_tracking}/im';
