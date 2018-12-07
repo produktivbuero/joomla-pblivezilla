@@ -44,12 +44,20 @@ class pbLiveZilla {
 }
 
 
-/* init (check every 500ms) */
+/* init (check every 500ms, retry 20 times) */
+var timesRun = 0;
+var maxRun = 20;
 var checkExist = setInterval(function() {
-   if (typeof LiveZilla != "undefined") {
-      console.log("LiveZilla loaded.");
+    
+    timesRun += 1;
+    if(timesRun === maxRun) {
+      console.log("LiveZilla NOT loaded");
       clearInterval(checkExist);
+    }
 
+    if (typeof LiveZilla != "undefined") {
+      console.log("LiveZilla loaded");
+      clearInterval(checkExist);
       pbLiveZilla.status();
-   }
+    }
 }, 500);
