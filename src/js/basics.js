@@ -20,12 +20,16 @@ class pbLiveZilla {
   }
 
   static disableCookies() {
+    if (typeof LiveZilla == "undefined") { return alert(window.pb.livezilla.text.error.nochat); };
+
     LiveZilla.OptOutCookies();
     pbLiveZilla.setCookie(livezillaCookie, 'true', 100); /* set own cookie for status */
     pbLiveZilla.status();
   }
 
   static disableTracking() {
+    if (typeof LiveZilla == "undefined") { return alert(window.pb.livezilla.text.error.nochat); };
+    
     LiveZilla.OptOutTracking();
     pbLiveZilla.setCookie(liveZillaTracking, 'true', 100); /* set own cookie for status */
     pbLiveZilla.status();

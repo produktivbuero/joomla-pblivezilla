@@ -65,6 +65,7 @@ class plgSystemPbLiveZilla extends CMSPlugin
     // Language strings
     $this->livezilla['text']['cookies']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_OFF');
     $this->livezilla['text']['tracking']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_OFF');
+    $this->livezilla['text']['error']['nochat'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ERROR_NOCHAT');
       
   }
 
