@@ -174,13 +174,23 @@ class plgSystemPbLiveZilla extends CMSPlugin
 
     // Replace shortcodes
     if ( $this->livezilla['optout_cookie'] && JString::strpos($row->text, '{plg_system_pblivezilla_optout_cookies') !== false ) {
-      $insert = '<a href="javascript:pbLiveZilla.disableCookies()" id="livezilla.cookies.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_LINK_DISABLE').'</a><span id="livezilla.cookies.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
+      if (empty($this->livezilla['code'])) {
+        $insert = '<span style="color:grey;">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ERROR_NOCODE').'</span>';
+      } else {
+        $insert = '<a href="javascript:pbLiveZilla.disableCookies()" id="livezilla.cookies.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_LINK_DISABLE').'</a><span id="livezilla.cookies.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
+      }
+      
       $regex = '/{plg_system_pblivezilla_optout_cookies}/im';
       $row->text = preg_replace($regex, $insert, $row->text);
     }
 
     if ( $this->livezilla['optout_tracking'] && JString::strpos($row->text, '{plg_system_pblivezilla_optout_tracking') !== false ) {
-      $insert = '<a href="javascript:pbLiveZilla.disableTracking()" id="livezilla.tracking.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_LINK_DISABLE').'</a><span id="livezilla.tracking.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
+      if (empty($this->livezilla['code'])) {
+        $insert = '<span style="color:grey;">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ERROR_NOCODE').'</span>';
+      } else {
+        $insert = '<a href="javascript:pbLiveZilla.disableTracking()" id="livezilla.tracking.link">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_LINK_DISABLE').'</a><span id="livezilla.tracking.status">'.JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_ENABLED').'</span>';
+      }
+
       $regex = '/{plg_system_pblivezilla_optout_tracking}/im';
       $row->text = preg_replace($regex, $insert, $row->text);
     }
