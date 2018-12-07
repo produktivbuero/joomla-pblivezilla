@@ -19,7 +19,7 @@ class pbLiveZilla {
       if ( $trackingLink !== null ) $trackingLink.style.display = 'none';
       if ( $trackingStatus !== null ) $trackingStatus.innerHTML = window.pb.livezilla.text.tracking.off;
     } else {
-      if ( $cookiesStatus !== null ) $cookiesStatus.innerHTML = window.pb.livezilla.text.on;
+      if ( $trackingStatus !== null ) $trackingStatus.innerHTML = window.pb.livezilla.text.on;
     }
   }
 
