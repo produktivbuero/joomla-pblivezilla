@@ -61,6 +61,10 @@ class plgSystemPbLiveZilla extends CMSPlugin
     $this->livezilla['optout_tracking'] = $params->get('optout_tracking', '1');
     $this->livezilla['cookies']['name'] = 'pb-livezilla-disable-cookie'; // cookie name (fixed)
     $this->livezilla['tracking']['name'] = 'pb-livezilla-disable-tracking'; // cookie name (fixed)
+
+    // Language strings
+    $this->livezilla['text']['cookies']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_OFF');
+    $this->livezilla['text']['tracking']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_OFF');
       
   }
 
@@ -91,21 +95,15 @@ class plgSystemPbLiveZilla extends CMSPlugin
       return;
     }
 
-    $doc = JFactory::getDocument();
-
-    $settings = array();
 
     // Plugin parameters
     $settings = $this->livezilla;
-
-    // Language strings
-    $settings['cookies']['disable'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_LINK_DISABLE');
-    $settings['cookies']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_COOKIES_OFF');
-    $settings['tracking']['disable'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_LINK_DISABLE');
-    $settings['tracking']['off'] = JText::_('PLG_SYSTEM_PBLIVEZILLA_OPTOUT_TRACKING_OFF');
+    unset($settings['code'], $settings['exclude'], $settings['lang'], $settings['optout_cookie'], $settings['optout_tracking']);
 
     // Insert global settings object
     $script = 'window.pb = window.pb || {}; window.pb.livezilla = '. json_encode($settings, JSON_FORCE_OBJECT);
+
+    $doc = JFactory::getDocument();
     $doc->addScriptDeclaration( $script );
   }
 

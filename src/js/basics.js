@@ -10,12 +10,12 @@ class pbLiveZilla {
   static status() {
     if (document.cookie.indexOf(livezillaCookie + '=true') > -1) {
       if ( $cookiesLink !== null ) $cookiesLink.style.display = 'none';
-      if ( $cookiesStatus !== null ) $cookiesStatus.innerHTML = window.pb.livezilla.cookies.off;
+      if ( $cookiesStatus !== null ) $cookiesStatus.innerHTML = window.pb.livezilla.text.cookies.off;
     }
 
     if (document.cookie.indexOf(liveZillaTracking + '=true') > -1) {
       if ( $trackingLink !== null ) $trackingLink.style.display = 'none';
-      if ( $trackingStatus !== null ) $trackingStatus.innerHTML = window.pb.livezilla.tracking.off;
+      if ( $trackingStatus !== null ) $trackingStatus.innerHTML = window.pb.livezilla.text.tracking.off;
     }
   }
 
